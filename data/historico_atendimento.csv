@@ -1,6 +1,16 @@
 data,canal,tema,resumo,resolvido
-2025-09-15,chat,CDB,Cliente perguntou sobre rentabilidade e prazos,sim
-2025-09-22,telefone,Problema no app,Erro ao visualizar extrato foi corrigido,sim
-2025-10-01,chat,Tesouro Selic,Cliente pediu explicação sobre o funcionamento do Tesouro Direto,sim
-2025-10-12,chat,Metas financeiras,Cliente acompanhou o progresso da reserva de emergência,sim
-2025-10-25,email,Atualização cadastral,Cliente atualizou e-mail e telefone,sim
+2025-09-15,chat,Controle de gastos,Usuário perguntou como registrar um gasto com lanche,sim
+2025-09-22,chat,Saldo disponível,Usuário consultou o saldo restante da mesada,sim
+2025-10-01,chat,Meta financeira,Usuário criou meta para comprar um jogo,sim
+2025-10-12,chat,Economia,Usuário pediu dicas para economizar parte da mesada,sim
+2025-10-25,chat,Desejo e necessidade,Usuário pediu ajuda para diferenciar gastos necessários e desejos,sim
+2025-11-02,chat,Mesada mensal,Usuário registrou recebimento da mesada do mês,sim
+2025-11-05,chat,Gastos da semana,Usuário consultou resumo dos gastos semanais,sim
+2025-11-10,chat,Meta financeira,Usuário verificou quanto falta para atingir sua meta,sim
+2025-11-14,chat,Planejamento financeiro,Usuário pediu orientação para organizar a mesada,sim
+2025-11-18,chat,Compra planejada,Usuário simulou compra de um fone de ouvido,sim
+2025-11-22,chat,Controle de gastos,Usuário registrou compra de material escolar,sim
+2025-11-25,chat,Economia,Usuário solicitou sugestões para aumentar a economia mensal,sim
+2025-11-28,chat,Saldo disponível,Usuário consultou saldo após registrar novos gastos,sim
+2025-12-02,chat,Meta financeira,Usuário atualizou valor economizado para compra de bicicleta,sim
+2025-12-05,chat,Educação financeira,Usuário pediu explicação sobre orçamento pessoal,sim
