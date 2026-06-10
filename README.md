@@ -1,149 +1,135 @@
-# 🤖 Agente Financeiro Inteligente com IA Generativa
+# MIA – Mesada Inteligente Assistida
 
-## Contexto
+## Sobre o Projeto
 
-Os assistentes virtuais no setor financeiro estão evoluindo de simples chatbots reativos para **agentes inteligentes e proativos**. Neste desafio, você vai idealizar e prototipar um agente financeiro que utiliza IA Generativa para:
+A MIA (Mesada Inteligente Assistida) é uma agente de Inteligência Artificial criada para auxiliar crianças e adolescentes no controle da mesada, no acompanhamento de gastos, na criação de metas financeiras e no desenvolvimento de hábitos de consumo consciente.
 
-- **Antecipar necessidades** ao invés de apenas responder perguntas
-- **Personalizar** sugestões com base no contexto de cada cliente
-- **Cocriar soluções** financeiras de forma consultiva
-- **Garantir segurança** e confiabilidade nas respostas (anti-alucinação)
-
-> [!TIP]
-> Na pasta [`examples/`](./examples/) você encontra referências de implementação para cada etapa deste desafio.
+O projeto foi desenvolvido como parte do desafio de IA Generativa, integrando documentação, engenharia de prompts, base de conhecimento estruturada, Python e experiência conversacional.
 
 ---
 
-## O Que Você Deve Entregar
+## Objetivo
 
-### 1. Documentação do Agente
+Promover educação financeira de forma simples, segura e acessível, utilizando linguagem natural e exemplos adequados ao público infantojuvenil.
 
-Defina **o que** seu agente faz e **como** ele funciona:
+A MIA auxilia o usuário a:
 
-- **Caso de Uso:** Qual problema financeiro ele resolve? (ex: consultoria de investimentos, planejamento de metas, alertas de gastos)
-- **Persona e Tom de Voz:** Como o agente se comporta e se comunica?
-- **Arquitetura:** Fluxo de dados e integração com a base de conhecimento
-- **Segurança:** Como evitar alucinações e garantir respostas confiáveis?
-
-📄 **Template:** [`docs/01-documentacao-agente.md`](./docs/01-documentacao-agente.md)
-
----
-
-### 2. Base de Conhecimento
-
-Utilize os **dados mockados** disponíveis na pasta [`data/`](./data/) para alimentar seu agente:
-
-| Arquivo | Formato | Descrição |
-|---------|---------|-----------|
-| `transacoes.csv` | CSV | Histórico de transações do cliente |
-| `historico_atendimento.csv` | CSV | Histórico de atendimentos anteriores |
-| `perfil_investidor.json` | JSON | Perfil e preferências do cliente |
-| `produtos_financeiros.json` | JSON | Produtos e serviços disponíveis |
-
-Você pode adaptar ou expandir esses dados conforme seu caso de uso.
-
-📄 **Template:** [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md)
+* Controlar gastos da mesada;
+* Acompanhar saldo disponível;
+* Criar metas financeiras;
+* Planejar compras futuras;
+* Desenvolver hábitos de economia;
+* Aprender conceitos básicos de educação financeira.
 
 ---
 
-### 3. Prompts do Agente
+## Tecnologias Utilizadas
 
-Documente os prompts que definem o comportamento do seu agente:
-
-- **System Prompt:** Instruções gerais de comportamento e restrições
-- **Exemplos de Interação:** Cenários de uso com entrada e saída esperada
-- **Tratamento de Edge Cases:** Como o agente lida com situações limite
-
-📄 **Template:** [`docs/03-prompts.md`](./docs/03-prompts.md)
-
----
-
-### 4. Aplicação Funcional
-
-Desenvolva um **protótipo funcional** do seu agente:
-
-- Chatbot interativo (sugestão: Streamlit, Gradio ou similar)
-- Integração com LLM (via API ou modelo local)
-- Conexão com a base de conhecimento
-
-📁 **Pasta:** [`src/`](./src/)
+* Python
+* Streamlit
+* Ollama
+* Inteligência Artificial Generativa
+* JSON
+* CSV
+* Engenharia de Prompts
 
 ---
 
-### 5. Avaliação e Métricas
+## Estrutura do Projeto
 
-Descreva como você avalia a qualidade do seu agente:
+```text
+data/
+├── historico_atendimento.csv
+├── perfil_investidor.json
+├── recursos_mia.json
+└── transacoes.csv
 
-**Métricas Sugeridas:**
-- Precisão/assertividade das respostas
-- Taxa de respostas seguras (sem alucinações)
-- Coerência com o perfil do cliente
+docs/
+├── 01-documentacao-agente.md
+├── 02-base-conhecimento.md
+├── 03-prompts.md
+├── 04-metricas.md
+└── 05-pitch.md
 
-📄 **Template:** [`docs/04-metricas.md`](./docs/04-metricas.md)
-
----
-
-### 6. Pitch
-
-Grave um **pitch de 3 minutos** (estilo elevador) apresentando:
-
-- Qual problema seu agente resolve?
-- Como ele funciona na prática?
-- Por que essa solução é inovadora?
-
-📄 **Template:** [`docs/05-pitch.md`](./docs/05-pitch.md)
-
----
-
-## Ferramentas Sugeridas
-
-Todas as ferramentas abaixo possuem versões gratuitas:
-
-| Categoria | Ferramentas |
-|-----------|-------------|
-| **LLMs** | [ChatGPT](https://chat.openai.com/), [Copilot](https://copilot.microsoft.com/), [Gemini](https://gemini.google.com/), [Claude](https://claude.ai/), [Ollama](https://ollama.ai/) |
-| **Desenvolvimento** | [Streamlit](https://streamlit.io/), [Gradio](https://www.gradio.app/), [Google Colab](https://colab.research.google.com/) |
-| **Orquestração** | [LangChain](https://www.langchain.com/), [LangFlow](https://www.langflow.org/), [CrewAI](https://www.crewai.com/) |
-| **Diagramas** | [Mermaid](https://mermaid.js.org/), [Draw.io](https://app.diagrams.net/), [Excalidraw](https://excalidraw.com/) |
-
----
-
-## Estrutura do Repositório
-
-```
-📁 lab-agente-financeiro/
-│
-├── 📄 README.md
-│
-├── 📁 data/                          # Dados mockados para o agente
-│   ├── historico_atendimento.csv     # Histórico de atendimentos (CSV)
-│   ├── perfil_investidor.json        # Perfil do cliente (JSON)
-│   ├── produtos_financeiros.json     # Produtos disponíveis (JSON)
-│   └── transacoes.csv                # Histórico de transações (CSV)
-│
-├── 📁 docs/                          # Documentação do projeto
-│   ├── 01-documentacao-agente.md     # Caso de uso e arquitetura
-│   ├── 02-base-conhecimento.md       # Estratégia de dados
-│   ├── 03-prompts.md                 # Engenharia de prompts
-│   ├── 04-metricas.md                # Avaliação e métricas
-│   └── 05-pitch.md                   # Roteiro do pitch
-│
-├── 📁 src/                           # Código da aplicação
-│   └── app.py                        # (exemplo de estrutura)
-│
-├── 📁 assets/                        # Imagens e diagramas
-│   └── ...
-│
-└── 📁 examples/                      # Referências e exemplos
-    └── README.md
+src/
+└── app.py
 ```
 
 ---
 
-## Dicas Finais
+## Funcionalidades
 
-1. **Comece pelo prompt:** Um bom system prompt é a base de um agente eficaz
-2. **Use os dados mockados:** Eles garantem consistência e evitam problemas com dados sensíveis
-3. **Foque na segurança:** No setor financeiro, evitar alucinações é crítico
-4. **Teste cenários reais:** Simule perguntas que um cliente faria de verdade
-5. **Seja direto no pitch:** 3 minutos passam rápido, vá ao ponto
+* Consulta de saldo;
+* Acompanhamento de metas financeiras;
+* Simulações simples de economia;
+* Orientações sobre consumo consciente;
+* Educação financeira básica;
+* Utilização de contexto personalizado baseado em JSON e CSV;
+* Respostas contextualizadas com base nos dados do usuário.
+
+---
+
+## Segurança
+
+A MIA foi projetada para atuar exclusivamente no contexto de educação financeira básica.
+
+O agente:
+
+* Não recomenda investimentos;
+* Não realiza transações financeiras;
+* Não solicita senhas ou dados bancários;
+* Não acessa informações financeiras reais;
+* Não fornece aconselhamento financeiro profissional.
+
+---
+
+## Como Executar
+
+### 1. Instale as dependências
+
+```bash
+pip install streamlit pandas requests
+```
+
+### 2. Inicie o Ollama
+
+Certifique-se de possuir um modelo compatível instalado, por exemplo:
+
+```bash
+ollama pull gpt-oss:20b
+```
+
+ou outro modelo compatível com sua máquina.
+
+### 3. Execute a aplicação
+
+```bash
+streamlit run src/app.py
+```
+
+### 4. Acesse no navegador
+
+```text
+http://localhost:8501
+```
+
+---
+
+## Estrutura da Solução
+
+A MIA utiliza uma base de conhecimento composta por arquivos JSON e CSV contendo:
+
+* Perfil do usuário;
+* Histórico de interações;
+* Transações financeiras simuladas;
+* Recursos disponíveis do agente.
+
+Essas informações são carregadas pela aplicação em Python e utilizadas como contexto para gerar respostas mais personalizadas, educativas e coerentes.
+
+---
+
+## Autor
+
+**Sandro Cordeiro**
+
+Projeto desenvolvido para fins educacionais como entrega do desafio **"Construa Seu Assistente Virtual Com Inteligência Artificial"** da DIO.
