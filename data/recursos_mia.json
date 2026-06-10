@@ -19,4 +19,8 @@
     "nome": "Consulta de Saldo",
     "descricao": "Permite acompanhar o saldo disponível da mesada."
   }
+   {
+  "nome": "Planejamento de Economia",
+  "descricao": "Ajuda o usuário a definir metas financeiras e criar estratégias para economizar parte da mesada."
+  }
 ]
