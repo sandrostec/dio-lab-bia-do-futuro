@@ -87,7 +87,7 @@ Hábito financeiro: {perfil_usuario.get("habito_financeiro")}
 Nível de educação financeira: {perfil_usuario.get("nivel_educacao_financeira")}
 
 METAS FINANCEIRAS:
-{metas}
+{json.dumps(perfil_usuario.get("metas", []), ensure_ascii=False, indent=2)}
 
 ÚLTIMAS INTERAÇÕES:
 {historico_atendimento.tail(5).to_string(index=False)}
