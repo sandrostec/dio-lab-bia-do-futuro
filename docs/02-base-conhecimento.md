@@ -51,27 +51,43 @@ with open("data/recursos_mia.json", "r", encoding="utf-8") as f:
     recursos_mia = json.load(f)
 ```
 
+Esses dados são utilizados para montar o contexto enviado ao agente, permitindo que a MIA responda de forma personalizada, coerente e sincronizada com as informações disponíveis nos arquivos da base.
+
 ---
 
 ### Como os dados são usados no prompt?
 
 Os dados são utilizados como contexto complementar para a IA.
 
-Antes de gerar uma resposta, a aplicação monta um bloco de contexto contendo informações do usuário, histórico de interações, transações e recursos disponíveis.
+Antes de gerar uma resposta, a aplicação monta um bloco de contexto contendo informações do usuário, histórico de interações, transações, metas financeiras e recursos disponíveis.
 
 ```python
 import json
 
 def montar_contexto(perfil_usuario, historico_atendimento, transacoes, recursos_mia):
 
+    metas = json.dumps(
+        perfil_usuario.get("metas", []),
+        ensure_ascii=False,
+        indent=2
+    )
+
     contexto = f"""
 DADOS DO USUÁRIO:
 Nome: {perfil_usuario.get("nome")}
 Idade: {perfil_usuario.get("idade")}
 Perfil financeiro: {perfil_usuario.get("perfil_financeiro")}
+Tipo de usuário: {perfil_usuario.get("tipo_usuario")}
 Mesada mensal: R$ {perfil_usuario.get("mesada_mensal")}
 Saldo atual: R$ {perfil_usuario.get("saldo_atual")}
 Objetivo principal: {perfil_usuario.get("objetivo_principal")}
+Valor do objetivo principal: R$ {perfil_usuario.get("valor_objetivo_principal")}
+Valor economizado: R$ {perfil_usuario.get("valor_economizado")}
+Hábito financeiro: {perfil_usuario.get("habito_financeiro")}
+Nível de educação financeira: {perfil_usuario.get("nivel_educacao_financeira")}
+
+METAS FINANCEIRAS:
+{metas}
 
 ÚLTIMAS INTERAÇÕES:
 {historico_atendimento.tail(5).to_string(index=False)}
@@ -98,9 +114,23 @@ DADOS DO USUÁRIO:
 Nome: Pedro Silva
 Idade: 12 anos
 Perfil financeiro: aprendiz
+Tipo de usuário: crianca_adolescente
 Mesada mensal: R$ 100,00
 Saldo atual: R$ 45,00
 Objetivo principal: Comprar um jogo
+Valor do objetivo principal: R$ 200,00
+Valor economizado: R$ 80,00
+Hábito financeiro: está aprendendo a controlar gastos
+Nível de educação financeira: básico
+
+METAS FINANCEIRAS:
+- Comprar um jogo | Meta: R$ 200,00 | Economizado: R$ 80,00 | Prazo: 2026-06
+- Comprar uma bicicleta | Meta: R$ 800,00 | Economizado: R$ 120,00 | Prazo: 2026-12
+- Comprar um livro | Meta: R$ 60,00 | Economizado: R$ 25,00 | Prazo: 2026-03
+- Comprar um fone de ouvido | Meta: R$ 150,00 | Economizado: R$ 40,00 | Prazo: 2026-05
+- Comprar material escolar | Meta: R$ 120,00 | Economizado: R$ 30,00 | Prazo: 2026-02
+- Ir ao cinema com amigos | Meta: R$ 80,00 | Economizado: R$ 20,00 | Prazo: 2026-04
+- Comprar um controle para videogame | Meta: R$ 250,00 | Economizado: R$ 90,00 | Prazo: 2026-08
 
 ÚLTIMAS INTERAÇÕES:
 2025-11-18 | Compra planejada | Usuário simulou compra de um fone de ouvido
@@ -133,7 +163,7 @@ A utilização de uma base de conhecimento estruturada permite que a MIA:
 
 * Personalize as respostas de acordo com o perfil do usuário;
 * Considere o histórico de interações durante a conversa;
-* Analise receitas, despesas e metas financeiras;
+* Analise receitas, despesas, metas financeiras e hábitos de consumo;
 * Realize simulações financeiras simples;
 * Reduza respostas fora de contexto;
 * Ofereça orientações mais educativas e consistentes.
