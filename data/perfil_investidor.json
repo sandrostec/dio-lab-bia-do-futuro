@@ -1,23 +1,72 @@
 {
-  "nome": "João Silva",
-  "idade": 32,
-  "profissao": "Analista de Sistemas",
-  "renda_mensal": 5000.00,
-  "perfil_investidor": "moderado",
-  "objetivo_principal": "Construir reserva de emergência",
-  "patrimonio_total": 15000.00,
-  "reserva_emergencia_atual": 10000.00,
-  "aceita_risco": false,
+  "nome": "Pedro Silva",
+  "idade": 12,
+  "perfil_financeiro": "iniciante",
+  "tipo_usuario": "crianca_adolescente",
+  "mesada_mensal": 100.00,
+  "saldo_atual": 45.00,
+  "objetivo_principal": "Comprar um jogo",
+  "valor_objetivo_principal": 200.00,
+  "valor_economizado": 80.00,
+  "habito_financeiro": "esta_aprendendo_a_controlar_gastos",
+  "nivel_educacao_financeira": "basico",
+  "responsavel_configuracao": true,
+  "aceita_orientacoes_educativas": true,
+
   "metas": [
     {
-      "meta": "Completar reserva de emergência",
-      "valor_necessario": 15000.00,
+      "meta": "Comprar um jogo",
+      "valor_necessario": 200.00,
+      "valor_economizado": 80.00,
       "prazo": "2026-06"
     },
     {
-      "meta": "Entrada do apartamento",
-      "valor_necessario": 50000.00,
-      "prazo": "2027-12"
+      "meta": "Comprar uma bicicleta",
+      "valor_necessario": 800.00,
+      "valor_economizado": 120.00,
+      "prazo": "2026-12"
+    },
+    {
+      "meta": "Comprar um livro",
+      "valor_necessario": 60.00,
+      "valor_economizado": 25.00,
+      "prazo": "2026-03"
+    },
+    {
+      "meta": "Comprar um fone de ouvido",
+      "valor_necessario": 150.00,
+      "valor_economizado": 40.00,
+      "prazo": "2026-05"
+    },
+    {
+      "meta": "Comprar material escolar",
+      "valor_necessario": 120.00,
+      "valor_economizado": 30.00,
+      "prazo": "2026-02"
+    },
+    {
+      "meta": "Ir ao cinema com amigos",
+      "valor_necessario": 80.00,
+      "valor_economizado": 20.00,
+      "prazo": "2026-04"
+    },
+    {
+      "meta": "Comprar um controle para videogame",
+      "valor_necessario": 250.00,
+      "valor_economizado": 90.00,
+      "prazo": "2026-08"
     }
-  ]
+  ],
+
+  "preferencias": {
+    "linguagem": "simples",
+    "tom": "educativo_e_motivador",
+    "exemplos": [
+      "mesada",
+      "lanche",
+      "jogos",
+      "brinquedos",
+      "material escolar"
+    ]
+  }
 }
