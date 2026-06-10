@@ -86,9 +86,11 @@ Esse contexto pode ser incluído no prompt da IA para orientar a resposta da MIA
 
 ---
 
-## Exemplo de Contexto Montado
+## Modelo de Contexto Montado
 
-O exemplo abaixo representa o contexto gerado automaticamente pela função `montar_contexto()`, a partir dos dados carregados dos arquivos da pasta `data`.
+O modelo abaixo demonstra como a função `montar_contexto()` organiza dinamicamente os dados carregados dos arquivos da pasta `data`.
+
+Os valores entre chaves são preenchidos automaticamente pelo Python no momento da execução, a partir dos arquivos `perfil_investidor.json`, `historico_atendimento.csv`, `transacoes.csv` e `recursos_mia.json`.
 
 ```text
 DADOS DO USUÁRIO:
