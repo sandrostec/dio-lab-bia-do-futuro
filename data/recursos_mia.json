@@ -1,18 +1,22 @@
 [
   {
     "nome": "Controle de Gastos",
-    "descricao": "Permite registrar e acompanhar despesas."
+    "descricao": "Permite registrar e acompanhar despesas da mesada."
   },
   {
     "nome": "Meta Financeira",
-    "descricao": "Ajuda a planejar objetivos financeiros."
+    "descricao": "Ajuda a definir objetivos financeiros e acompanhar o progresso."
   },
   {
     "nome": "Simulador Financeiro",
-    "descricao": "Calcula o tempo necessário para atingir metas."
+    "descricao": "Calcula o tempo necessário para atingir metas de economia."
   },
   {
     "nome": "Educação Financeira",
-    "descricao": "Explica conceitos financeiros básicos."
+    "descricao": "Explica conceitos financeiros básicos de forma simples e educativa."
+  },
+  {
+    "nome": "Consulta de Saldo",
+    "descricao": "Permite acompanhar o saldo disponível da mesada."
   }
 ]
