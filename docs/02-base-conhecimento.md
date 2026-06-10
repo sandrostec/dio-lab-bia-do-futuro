@@ -31,132 +31,111 @@ O arquivo `perfil_investidor.json` manteve sua nomenclatura original para preser
 
 ### Como os dados são carregados?
 
-Os arquivos JSON e CSV são carregados no início da aplicação utilizando Python. Dessa forma, qualquer alteração feita nos arquivos da pasta `data` será refletida automaticamente no contexto montado para a MIA.
+Os arquivos JSON e CSV são carregados no início da aplicação utilizando Python.
+
+Dessa forma, qualquer alteração realizada nos arquivos da pasta `data` é automaticamente refletida no contexto utilizado pela MIA.
 
 ```python
 import json
 import pandas as pd
 
-def carregar_base_conhecimento():
-    historico_atendimento = pd.read_csv("data/historico_atendimento.csv")
-    transacoes = pd.read_csv("data/transacoes.csv")
+# Carregando arquivos CSV
+historico_atendimento = pd.read_csv("data/historico_atendimento.csv")
+transacoes = pd.read_csv("data/transacoes.csv")
 
-    with open("data/perfil_investidor.json", "r", encoding="utf-8") as f:
-        perfil_usuario = json.load(f)
+# Carregando arquivos JSON
+with open("data/perfil_investidor.json", "r", encoding="utf-8") as f:
+    perfil_usuario = json.load(f)
 
-    with open("data/recursos_mia.json", "r", encoding="utf-8") as f:
-        recursos_mia = json.load(f)
-
-    return perfil_usuario, historico_atendimento, transacoes, recursos_mia
+with open("data/recursos_mia.json", "r", encoding="utf-8") as f:
+    recursos_mia = json.load(f)
 ```
-
-Esses dados são utilizados para montar o contexto enviado ao agente, permitindo que a MIA responda de forma personalizada, coerente e sincronizada com as informações disponíveis nos arquivos da base.
 
 ---
 
 ### Como os dados são usados no prompt?
 
-Os dados são utilizados como contexto complementar para o agente.
+Os dados são utilizados como contexto complementar para a IA.
 
-O perfil do usuário, o histórico de atendimento, as transações e os recursos da MIA são organizados dinamicamente em um bloco de contexto antes da geração da resposta.
+Antes de gerar uma resposta, a aplicação monta um bloco de contexto contendo informações do usuário, histórico de interações, transações e recursos disponíveis.
 
 ```python
 import json
 
 def montar_contexto(perfil_usuario, historico_atendimento, transacoes, recursos_mia):
-    ultimas_interacoes = historico_atendimento.tail(5).to_string(index=False)
-    transacoes_recentes = transacoes.tail(10).to_string(index=False)
-    recursos_formatados = json.dumps(recursos_mia, ensure_ascii=False, indent=2)
 
     contexto = f"""
 DADOS DO USUÁRIO:
 Nome: {perfil_usuario.get("nome")}
 Idade: {perfil_usuario.get("idade")}
 Perfil financeiro: {perfil_usuario.get("perfil_financeiro")}
-Tipo de usuário: {perfil_usuario.get("tipo_usuario")}
 Mesada mensal: R$ {perfil_usuario.get("mesada_mensal")}
 Saldo atual: R$ {perfil_usuario.get("saldo_atual")}
 Objetivo principal: {perfil_usuario.get("objetivo_principal")}
-Valor do objetivo principal: R$ {perfil_usuario.get("valor_objetivo_principal")}
-Valor economizado: R$ {perfil_usuario.get("valor_economizado")}
-Nível de educação financeira: {perfil_usuario.get("nivel_educacao_financeira")}
 
 ÚLTIMAS INTERAÇÕES:
-{ultimas_interacoes}
+{historico_atendimento.tail(5).to_string(index=False)}
 
 TRANSAÇÕES RECENTES:
-{transacoes_recentes}
+{transacoes.tail(10).to_string(index=False)}
 
-RECURSOS DISPONÍVEIS DA MIA:
-{recursos_formatados}
+RECURSOS DISPONÍVEIS:
+{json.dumps(recursos_mia, ensure_ascii=False, indent=2)}
 """
-
     return contexto
 ```
 
-Esse contexto pode ser incluído no prompt da IA para orientar a resposta da MIA, garantindo maior personalização e reduzindo o risco de respostas fora do escopo.
+Esse contexto é enviado para o modelo de IA, permitindo respostas mais personalizadas, coerentes e alinhadas às informações disponíveis.
 
 ---
 
-## Exemplo de Integração Completa
+## Exemplo de Contexto Gerado
 
-O exemplo abaixo demonstra como a aplicação pode carregar os arquivos da pasta `data` e montar o contexto automaticamente.
-
-```python
-perfil_usuario, historico_atendimento, transacoes, recursos_mia = carregar_base_conhecimento()
-
-contexto_mia = montar_contexto(
-    perfil_usuario=perfil_usuario,
-    historico_atendimento=historico_atendimento,
-    transacoes=transacoes,
-    recursos_mia=recursos_mia
-)
-
-print(contexto_mia)
-```
-
-Com essa abordagem, as informações exibidas no contexto não ficam fixas manualmente na documentação. Elas são preenchidas automaticamente pelo Python a partir dos arquivos:
-
-* `perfil_investidor.json`
-* `historico_atendimento.csv`
-* `transacoes.csv`
-* `recursos_mia.json`
-
----
-
-## Modelo de Contexto Gerado
-
-O modelo abaixo representa a estrutura do contexto gerado automaticamente pela função `montar_contexto()`.
+O exemplo abaixo representa uma saída gerada automaticamente pela função `montar_contexto()`, utilizando os dados presentes nos arquivos da pasta `data`.
 
 ```text
 DADOS DO USUÁRIO:
-Nome: valor carregado de perfil_investidor.json
-Idade: valor carregado de perfil_investidor.json
-Perfil financeiro: valor carregado de perfil_investidor.json
-Tipo de usuário: valor carregado de perfil_investidor.json
-Mesada mensal: valor carregado de perfil_investidor.json
-Saldo atual: valor carregado de perfil_investidor.json
-Objetivo principal: valor carregado de perfil_investidor.json
-Valor do objetivo principal: valor carregado de perfil_investidor.json
-Valor economizado: valor carregado de perfil_investidor.json
-Nível de educação financeira: valor carregado de perfil_investidor.json
+Nome: Pedro Silva
+Idade: 12 anos
+Perfil financeiro: aprendiz
+Mesada mensal: R$ 100,00
+Saldo atual: R$ 45,00
+Objetivo principal: Comprar um jogo
 
 ÚLTIMAS INTERAÇÕES:
-últimos registros carregados de historico_atendimento.csv
+2025-11-18 | Compra planejada | Usuário simulou compra de um fone de ouvido
+2025-11-22 | Controle de gastos | Usuário registrou compra de material escolar
+2025-11-25 | Economia | Usuário solicitou sugestões para aumentar a economia mensal
+2025-11-28 | Saldo disponível | Usuário consultou saldo após registrar novos gastos
+2025-12-05 | Educação financeira | Usuário pediu explicação sobre orçamento pessoal
 
 TRANSAÇÕES RECENTES:
-últimos registros carregados de transacoes.csv
+2026-01-01 | Mesada mensal | R$ 100,00 | entrada
+2026-01-03 | Lanche na escola | R$ 12,00 | saída
+2026-01-05 | Sorvete | R$ 8,00 | saída
+2026-01-10 | Presente da avó | R$ 50,00 | entrada
+2026-01-25 | Depósito para meta financeira | R$ 30,00 | saída
 
 RECURSOS DISPONÍVEIS DA MIA:
-dados carregados de recursos_mia.json
+- Controle de Gastos
+- Meta Financeira
+- Simulador Financeiro
+- Educação Financeira
+- Consulta de Saldo
+- Planejamento de Economia
 ```
 
-A partir desse contexto sincronizado com os arquivos da base, a MIA consegue responder perguntas como:
+---
 
-* Quanto ainda tenho de saldo?
-* Quanto gastei este mês?
-* Quanto falta para minha meta?
-* Como posso economizar melhor?
-* Esse gasto é uma necessidade ou um desejo?
+## Benefícios da Estratégia
 
-Essa estratégia permite que o agente utilize dados estruturados para gerar respostas contextualizadas, educativas, seguras e sempre alinhadas ao conteúdo atualizado dos arquivos da base de conhecimento.
+A utilização de uma base de conhecimento estruturada permite que a MIA:
+
+* Personalize as respostas de acordo com o perfil do usuário;
+* Considere o histórico de interações durante a conversa;
+* Analise receitas, despesas e metas financeiras;
+* Realize simulações financeiras simples;
+* Reduza respostas fora de contexto;
+* Ofereça orientações mais educativas e consistentes.
+
+Essa abordagem integra Inteligência Artificial Generativa, dados estruturados, Python e contexto personalizado, atendendo aos requisitos propostos pelo desafio.
