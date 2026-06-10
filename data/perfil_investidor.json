@@ -12,7 +12,6 @@
   "nivel_educacao_financeira": "basico",
   "responsavel_configuracao": true,
   "aceita_orientacoes_educativas": true,
-
   "metas": [
     {
       "meta": "Comprar um jogo",
@@ -57,7 +56,6 @@
       "prazo": "2026-08"
     }
   ],
-
   "preferencias": {
     "linguagem": "simples",
     "tom": "educativo_e_motivador",
