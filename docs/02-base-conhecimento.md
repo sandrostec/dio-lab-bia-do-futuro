@@ -88,44 +88,22 @@ Esse contexto pode ser incluído no prompt da IA para orientar a resposta da MIA
 
 ## Exemplo de Contexto Montado
 
+O exemplo abaixo representa o contexto gerado automaticamente pela função `montar_contexto()`, a partir dos dados carregados dos arquivos da pasta `data`.
+
 ```text
 DADOS DO USUÁRIO:
-Nome: Pedro Silva
-Idade: 12 anos
-Perfil financeiro: iniciante
-Mesada mensal: R$ 100,00
-Saldo atual: R$ 45,00
-Objetivo principal: Comprar um jogo
+Nome: {perfil_usuario.get("nome")}
+Idade: {perfil_usuario.get("idade")}
+Perfil financeiro: {perfil_usuario.get("perfil_financeiro")}
+Mesada mensal: R$ {perfil_usuario.get("mesada_mensal")}
+Saldo atual: R$ {perfil_usuario.get("saldo_atual")}
+Objetivo principal: {perfil_usuario.get("objetivo_principal")}
 
 ÚLTIMAS INTERAÇÕES:
-- Usuário perguntou como registrar um gasto com lanche.
-- Usuário consultou o saldo restante da mesada.
-- Usuário criou meta para comprar um jogo.
-- Usuário pediu dicas para economizar parte da mesada.
-- Usuário pediu ajuda para diferenciar desejo e necessidade.
+{historico_atendimento.tail(5).to_string(index=False)}
 
 TRANSAÇÕES RECENTES:
-- 2026-01-01: Mesada mensal - R$ 100,00 - entrada
-- 2026-01-03: Lanche na escola - R$ 12,00 - saída
-- 2026-01-05: Sorvete - R$ 8,00 - saída
-- 2026-01-10: Presente da avó - R$ 50,00 - entrada
-- 2026-01-25: Depósito para meta financeira - R$ 30,00 - saída
+{transacoes.tail(10).to_string(index=False)}
 
 RECURSOS DISPONÍVEIS DA MIA:
-- Controle de Gastos
-- Meta Financeira
-- Simulador Financeiro
-- Educação Financeira
-- Consulta de Saldo
-- Planejamento de Economia
-```
-
-A partir desse contexto, a MIA consegue responder perguntas como:
-
-* Quanto ainda tenho de saldo?
-* Quanto gastei este mês?
-* Quanto falta para minha meta?
-* Como posso economizar melhor?
-* Esse gasto é uma necessidade ou um desejo?
-
-Essa estratégia permite que o agente utilize dados estruturados para gerar respostas contextualizadas, educativas e seguras.
+{json.dumps(recursos_mia, ensure_ascii=False, indent=2)}
