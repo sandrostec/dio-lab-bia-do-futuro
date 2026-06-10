@@ -1,7 +1,7 @@
 {
   "nome": "Pedro Silva",
   "idade": 12,
-  "perfil_financeiro": "iniciante",
+  "perfil_financeiro": "aprendiz",
   "tipo_usuario": "crianca_adolescente",
   "mesada_mensal": 100.00,
   "saldo_atual": 45.00,
