@@ -10,16 +10,9 @@ MODELO = "gpt-oss:20b"
 
 # ================= CARREGAR DADOS =================
 
-perfil = json.load(
-    open("./data/perfil_investidor.json", encoding="utf-8")
-)
-
-recursos = json.load(
-    open("./data/recursos_mia.json", encoding="utf-8")
-)
-
+perfil = json.load(open("./data/perfil_investidor.json", encoding="utf-8"))
+recursos = json.load(open("./data/recursos_mia.json", encoding="utf-8"))
 transacoes = pd.read_csv("./data/transacoes.csv")
-
 historico = pd.read_csv("./data/historico_atendimento.csv")
 
 # ================= MONTAR CONTEXTO =================
@@ -88,7 +81,6 @@ REGRAS:
 # ================= CHAMAR O OLLAMA =================
 
 def perguntar(msg):
-
     prompt = f"""
 {SYSTEM_PROMPT}
 
@@ -97,21 +89,34 @@ CONTEXTO DO USUÁRIO:
 
 PERGUNTA:
 {msg}
+
+RESPONDA COMO A MIA:
 """
 
-    resposta = requests.post(
-        OLLAMA_URL,
-        json={
-            "model": MODELO,
-            "prompt": prompt,
-            "stream": False
-        }
-    )
+    try:
+        resposta = requests.post(
+            OLLAMA_URL,
+            json={
+                "model": MODELO,
+                "prompt": prompt,
+                "stream": False
+            },
+            timeout=120
+        )
 
-    if resposta.status_code == 200:
-        return resposta.json()["response"]
+        if resposta.status_code == 200:
+            return resposta.json().get("response", "A MIA não conseguiu gerar uma resposta.")
 
-    return "Não foi possível obter resposta da MIA."
+        return f"Erro ao conectar com o Ollama: {resposta.status_code} - {resposta.text}"
+
+    except requests.exceptions.ConnectionError:
+        return "Não foi possível conectar ao Ollama. Verifique se o Ollama está aberto e rodando em http://localhost:11434."
+
+    except requests.exceptions.Timeout:
+        return "O modelo demorou muito para responder. Tente novamente com uma pergunta mais curta."
+
+    except Exception as erro:
+        return f"Ocorreu um erro inesperado: {erro}"
 
 # ================= INTERFACE =================
 
@@ -127,7 +132,6 @@ st.write(
 )
 
 if pergunta := st.chat_input("Digite sua dúvida sobre sua mesada..."):
-
     st.chat_message("user").write(pergunta)
 
     with st.spinner("MIA está pensando..."):
@@ -138,7 +142,6 @@ if pergunta := st.chat_input("Digite sua dúvida sobre sua mesada..."):
 # ================= SIDEBAR =================
 
 with st.sidebar:
-
     st.header("👤 Usuário")
 
     st.write(f"**Nome:** {perfil.get('nome')}")
