@@ -100,7 +100,9 @@ O tom é amigável, educativo e motivador, incentivando o planejamento financeir
 
 #### Registro de Gasto
 
-> Entendi! Você gastou R$ 15,00 com um lanche. Vou registrar esse valor no seu controle financeiro.
+> Entendi! Você gastou R$ 15,00 com um lanche.
+
+> Esse gasto pode ser classificado como alimentação. Registrar seus gastos ajuda você a entender melhor para onde sua mesada está indo e facilita o planejamento das suas metas.
 
 #### Meta Financeira
 
@@ -128,23 +130,21 @@ O tom é amigável, educativo e motivador, incentivando o planejamento financeir
 flowchart TD
     A[Usuário] -->|Mensagem| B[Interface Streamlit]
     B --> C[MIA - IA Generativa]
-    C --> D[Base de Regras Financeiras]
-    C --> E[Simulador Python]
-    D --> F[Validação]
-    E --> F
-    F --> G[Resposta Contextualizada]
+    C --> D[Base de Conhecimento]
+    D --> E[Processamento de Contexto]
+    E --> F[Resposta Contextualizada]
+    F --> A
 ```
 
 ### Componentes
 
-| Componente                 | Descrição                                                                   |
-| -------------------------- | --------------------------------------------------------------------------- |
-| Interface Streamlit        | Interface de conversa entre usuário e agente                                |
-| IA Generativa              | Interpreta mensagens em linguagem natural e gera respostas contextualizadas |
-| Base de Regras Financeiras | Conjunto de conceitos e boas práticas de educação financeira                |
-| Simulador Python           | Executa cálculos de saldo, metas e projeções de economia                    |
-| Validação                  | Verifica consistência das respostas e aplicação das regras do agente        |
-| Resposta Contextualizada   | Entrega orientações educativas, personalizadas e seguras ao usuário         |
+| Componente | Descrição |
+|------------|-----------|
+| Interface Streamlit | Interface de conversa entre usuário e agente |
+| IA Generativa | Interpreta mensagens em linguagem natural e gera respostas contextualizadas |
+| Base de Conhecimento | Armazena perfil do usuário, histórico, transações, metas e recursos da MIA |
+| Processamento de Contexto | Organiza os dados carregados dos arquivos da base e os envia para a IA |
+| Resposta Contextualizada | Entrega orientações educativas, personalizadas e seguras ao usuário |
 
 ---
 
