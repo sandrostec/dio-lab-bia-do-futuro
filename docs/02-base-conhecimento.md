@@ -23,6 +23,8 @@ Foram removidas referências a produtos financeiros, investimentos e perfil de i
 
 As informações foram ajustadas para representar uma experiência de educação financeira simples, segura e adequada para crianças e adolescentes.
 
+O arquivo perfil_investidor.json manteve sua nomenclatura original para preservar compatibilidade com a estrutura do projeto-base, porém seu conteúdo foi adaptado para representar o perfil financeiro educacional do usuário da MIA.
+
 ---
 
 ## Estratégia de Integração
@@ -115,6 +117,7 @@ RECURSOS DISPONÍVEIS DA MIA:
 - Simulador Financeiro
 - Educação Financeira
 - Consulta de Saldo
+- Planejamento de Economia
 ```
 
 A partir desse contexto, a MIA consegue responder perguntas como:
