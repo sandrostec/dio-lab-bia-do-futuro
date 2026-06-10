@@ -16,7 +16,7 @@ O problema é agravado pela ausência de ferramentas simples e educativas que en
 
 A MIA (Mesada Inteligente Assistida) atua como uma educadora financeira virtual, auxiliando crianças e adolescentes no gerenciamento da mesada por meio de interações em linguagem natural.
 
-Utilizando Inteligência Artificial Generativa, a agente fornece orientações personalizadas, responde dúvidas sobre educação financeira e realiza simulações simples para apoiar o planejamento financeiro do usuário.
+Utilizando Inteligência Artificial Generativa, a agente interpreta solicitações em linguagem natural, fornece orientações contextualizadas e realiza simulações financeiras simples para apoiar a tomada de decisão do usuário.
 
 A MIA ajuda o usuário a:
 
@@ -43,6 +43,8 @@ O agente foi desenvolvido para:
 
 O foco principal é atender usuários entre 8 e 18 anos, utilizando linguagem simples, amigável e educativa.
 
+Embora o foco principal esteja em crianças e adolescentes, o agente também pode ser utilizado por pais e responsáveis como ferramenta de apoio à educação financeira familiar.
+
 ---
 
 ## Persona e Tom de Voz
@@ -55,7 +57,7 @@ MIA – Mesada Inteligente Assistida
 
 > Como o agente se comporta?
 
-A MIA (Mesada Inteligente Assistida) é uma educadora financeira virtual criada para ajudar crianças e adolescentes a desenvolver hábitos financeiros saudáveis desde cedo. Atua como uma mentora digital, orientando o usuário no controle da mesada, no planejamento de metas de economia e na tomada de decisões financeiras conscientes.
+A MIA (Mesada Inteligente Assistida) é uma educadora financeira virtual criada para ajudar crianças e adolescentes a desenvolver hábitos financeiros saudáveis desde cedo. Atua como uma mentora financeira digital, orientando o usuário no controle da mesada, no planejamento de metas de economia e na tomada de decisões financeiras conscientes.
 
 A agente valoriza planejamento, economia consciente e responsabilidade financeira, sempre utilizando exemplos práticos do cotidiano para facilitar o aprendizado.
 
@@ -124,25 +126,25 @@ O tom é amigável, educativo e motivador, incentivando o planejamento financeir
 
 ```mermaid
 flowchart TD
-    A[Usuário] -->|Mensagem| B[Interface]
+    A[Usuário] -->|Mensagem| B[Interface Streamlit]
     B --> C[MIA - IA Generativa]
-    C --> D[Regras Financeiras]
+    C --> D[Base de Regras Financeiras]
     C --> E[Simulador Python]
     D --> F[Validação]
     E --> F
-    F --> G[Resposta ao Usuário]
+    F --> G[Resposta Contextualizada]
 ```
 
 ### Componentes
 
-| Componente          | Descrição                                                                            |
-| ------------------- | ------------------------------------------------------------------------------------ |
-| Interface           | Chatbot desenvolvido em Streamlit                                                    |
-| IA Generativa       | Responsável pela interpretação das mensagens e geração de respostas contextualizadas |
-| Regras Financeiras  | Conjunto de orientações e conceitos de educação financeira básica                    |
-| Simulador Python    | Realiza cálculos de saldo, economia e metas financeiras                              |
-| Validação           | Verifica coerência das respostas e aplicação das regras do agente                    |
-| Resposta ao Usuário | Retorna orientações claras, educativas e seguras                                     |
+| Componente                 | Descrição                                                                   |
+| -------------------------- | --------------------------------------------------------------------------- |
+| Interface Streamlit        | Interface de conversa entre usuário e agente                                |
+| IA Generativa              | Interpreta mensagens em linguagem natural e gera respostas contextualizadas |
+| Base de Regras Financeiras | Conjunto de conceitos e boas práticas de educação financeira                |
+| Simulador Python           | Executa cálculos de saldo, metas e projeções de economia                    |
+| Validação                  | Verifica consistência das respostas e aplicação das regras do agente        |
+| Resposta Contextualizada   | Entrega orientações educativas, personalizadas e seguras ao usuário         |
 
 ---
 
@@ -156,6 +158,7 @@ flowchart TD
 * Quando não possuir informações suficientes, solicita mais detalhes antes de responder;
 * Admite limitações quando necessário;
 * Evita fornecer orientações financeiras avançadas ou recomendações de investimento;
+* Não solicita ou armazena dados bancários, senhas ou informações financeiras sensíveis;
 * Prioriza respostas educativas, transparentes e adequadas à faixa etária do usuário.
 
 ### Limitações Declaradas
@@ -164,8 +167,11 @@ flowchart TD
 
 * Não realiza investimentos ou recomenda aplicações financeiras;
 * Não substitui orientação profissional de educadores financeiros ou consultores especializados;
+* Não substitui a supervisão de pais ou responsáveis na gestão da mesada;
 * Não acessa contas bancárias ou dados financeiros reais;
 * Não realiza transações financeiras;
+* Não possui acesso a informações externas em tempo real;
+* Não realiza análise de crédito, investimentos ou produtos financeiros;
 * Não garante resultados financeiros futuros;
 * Não fornece aconselhamento tributário, jurídico ou bancário;
 * Não armazena informações pessoais sensíveis dos usuários.
