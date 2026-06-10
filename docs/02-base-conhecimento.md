@@ -107,7 +107,7 @@ Esse contexto é enviado para o modelo de IA, permitindo respostas mais personal
 
 ## Exemplo de Contexto Gerado
 
-O exemplo abaixo representa uma saída gerada automaticamente pela função `montar_contexto()`, utilizando os dados presentes nos arquivos da pasta `data`.
+O exemplo abaixo representa uma visualização simplificada do contexto gerado pela função `montar_contexto()`, adaptada para facilitar a leitura da documentação e baseada nos dados presentes nos arquivos da pasta `data`.
 
 ```text
 DADOS DO USUÁRIO:
